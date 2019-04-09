@@ -16,8 +16,8 @@
 #define MOTOR_IZQ_VEL     6
 
 // constantes para el control PD y el ajuste de la velocidad de los motores
-#define KP                30
-#define KD                50
+#define KP                20
+#define KD                100
 #define VELOCIDAD         255
 
 // instancia de la placa de control
@@ -85,7 +85,7 @@ void loop() {
       }
 
       // aplicación del control PD
-      int desfase = KP * error + KP* (error - error_anterior);
+      int desfase = KP * error + KD* (error - error_anterior);
 
       // cálculo y limitación de las velocidades
       int velocidad_der = VELOCIDAD + desfase;    // se calcula la nueva velocidad para el motor derecho y
